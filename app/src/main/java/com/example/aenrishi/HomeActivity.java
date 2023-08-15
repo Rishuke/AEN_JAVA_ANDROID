@@ -11,7 +11,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class HomeActivity extends AppCompatActivity {
-/*
+
     private DatabaseHelper databaseHelper;
     private int memberId;  // Remplacez par l'ID de l'utilisateur connecté
 
@@ -49,5 +49,5 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-    }*/
+    }
 }
