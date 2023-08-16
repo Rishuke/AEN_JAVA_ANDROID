@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#fff6ea"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Titre des résultats -->
+    <TextView
+        android:id="@+id/tv_results_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Résultats du QCM"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Résultat affiché -->
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Vous avez obtenu 7/10."
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Commentaire sur le résultat -->
+    <TextView
+        android:id="@+id/tv_result_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bravo! Vous avez réussi le test."
+        android:textSize="16sp" />
+
+    <!-- Bouton pour voir le certificat ou revenir à la liste des QCMs -->
+    <Button
+        android:id="@+id/btn_view_certificate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@drawable/button_background"
+        android:text="Voir le certificat"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

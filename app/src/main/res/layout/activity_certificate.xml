@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#fff6ea"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Image du certificat (à remplacer par une image réelle) -->
+    <ImageView
+        android:id="@+id/iv_certificate"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:src="@drawable/ffa"
+        android:contentDescription="Image du certificat" />
+
+    <!-- Texte de félicitations -->
+    <TextView
+        android:id="@+id/tv_congratulations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Félicitations! Vous avez réussi le QCM."
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

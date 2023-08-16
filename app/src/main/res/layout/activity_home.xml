@@ -86,7 +86,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="16dp"
-                    android:text="Mes Cours"
+                    android:text="Mes Formations"
                     android:textColor="#000000"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -112,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
-                        android:text="Afficher tout (12)"
+                        android:text="Afficher tout (0)"
                         android:textColor="#FFB03B"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -151,7 +151,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="Afficher tout (20)"
+                    android:text="Afficher tout (0)"
                     android:textColor="#FFB03B"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -189,7 +189,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="Afficher tout (20)"
+                    android:text="Afficher tout (0)"
                     android:textColor="#FFB03B"
                     android:textSize="12sp"
                     android:textStyle="bold" />
