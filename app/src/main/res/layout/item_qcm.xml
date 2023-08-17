@@ -22,4 +22,10 @@
         android:text="Description ou autre info"
         android:textSize="14sp" />
 
+    <TextView
+        android:id="@+id/qcm_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
 </LinearLayout>

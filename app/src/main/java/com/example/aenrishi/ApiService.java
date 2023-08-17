@@ -11,6 +11,6 @@ public interface ApiService {
     @POST("authentification/login")
     Call<LoginResponse> login(@Body LoginRequest loginRequest);
 
-    @GET("chapitres") // Correction des guillemets ici
-    Call<List<Qcm>> getQcms();
+    @GET("chapitres")
+    Call<ResponseWrapper> getQcms();
 }

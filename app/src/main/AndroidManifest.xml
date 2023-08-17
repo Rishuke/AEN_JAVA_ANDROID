@@ -30,6 +30,8 @@
         <activity android:name=".AccountActivity" />
         <activity android:name=".CardActivity" />
         <activity android:name=".QcmListActivity" />
+        <activity android:name=".QcmDetailActivity" />
+
 
     </application>
 

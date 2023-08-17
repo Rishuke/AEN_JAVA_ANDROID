@@ -17,7 +17,7 @@ import java.util.List;
 public class QcmListActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewQcmList;
-    private QcmListAdapter qcmListAdapter;  // Ceci est un adapter personnalisé que nous devrons créer.
+    private QcmListAdapter qcmListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,30 +32,28 @@ public class QcmListActivity extends AppCompatActivity {
 
     private void loadQcmList() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://rishi.wicookin.fr/") // Remplacez par l'URL de base de votre API
+                .baseUrl("https://rishi.wicookin.fr/") // L'URL de base de votre API
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         ApiService apiInterface = retrofit.create(ApiService.class);
 
-        // Ici, faites le call pour obtenir la liste des QCM. Par exemple :
-        Call<List<Qcm>> call = apiInterface.getQcms();
+        Call<ResponseWrapper> call = apiInterface.getQcms();
 
-        call.enqueue(new Callback<List<Qcm>>() {
+        call.enqueue(new Callback<ResponseWrapper>() {
             @Override
-            public void onResponse(Call<List<Qcm>> call, Response<List<Qcm>> response) {
+            public void onResponse(Call<ResponseWrapper> call, Response<ResponseWrapper> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    qcmListAdapter = new QcmListAdapter(QcmListActivity.this, response.body());
+                    List<Qcm> qcmList = response.body().getUsers();
+                    qcmListAdapter = new QcmListAdapter(QcmListActivity.this, qcmList);
                     recyclerViewQcmList.setAdapter(qcmListAdapter);
                 } else {
-                    // Gérez l'échec du chargement des données ici
                     Toast.makeText(QcmListActivity.this, "Échec du chargement des données", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Qcm>> call, Throwable t) {
-                // Gérez l'échec de la requête ici
+            public void onFailure(Call<ResponseWrapper> call, Throwable t) {
                 Toast.makeText(QcmListActivity.this, "Erreur: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 System.out.println(t.getMessage());
             }
