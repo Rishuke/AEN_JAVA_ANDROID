@@ -6,6 +6,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface ApiService {
     @POST("authentification/login")
@@ -13,4 +14,9 @@ public interface ApiService {
 
     @GET("chapitres")
     Call<ResponseWrapper> getQcms();
+
+
+
+    @GET("questions/{quizid}")
+    Call<QuestionsResponseWrapper> getQuestionsForQuiz(@Path("quizid") int quizId);
 }

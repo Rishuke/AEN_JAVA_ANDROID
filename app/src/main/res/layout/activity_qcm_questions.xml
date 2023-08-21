@@ -1,69 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:background="#fff6ea"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#fff6ea"
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/tv_qcm_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nom du QCM"
-        android:textStyle="bold"
+        android:layout_marginBottom="16dp"
         android:textSize="20sp"
-        android:layout_marginBottom="16dp" />
+        android:textStyle="bold" />
 
-    <!-- ScrollView pour les questions -->
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
 
-        <!-- LinearLayout pour les questions (exemple pour une question) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Exemple de question -->
-            <TextView
-                android:id="@+id/tv_question_example"
-                android:layout_width="wrap_content"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_questions"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="1. Quelle est la capitale de la France ?"
-                android:textSize="16sp"
-                android:layout_marginTop="8dp" />
+                android:nestedScrollingEnabled="false" />
 
-            <!-- Exemple de réponse -->
-            <RadioButton
-                android:id="@+id/rb_answer_example_1"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/btn_submit_answers"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Paris"
-                android:layout_marginTop="8dp" />
-
-            <RadioButton
-                android:id="@+id/rb_answer_example_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Berlin"
-                android:layout_marginTop="8dp" />
-
-            <!-- Ajoutez d'autres questions de manière similaire -->
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@drawable/button_background"
+                android:text="Soumettre les réponses" />
 
         </LinearLayout>
 
-    </ScrollView>
-
-    <!-- Bouton de soumission -->
-    <Button
-        android:id="@+id/btn_submit_answers"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@drawable/button_background"
-        android:text="Soumettre les réponses"
-        android:layout_marginTop="16dp" />
-
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

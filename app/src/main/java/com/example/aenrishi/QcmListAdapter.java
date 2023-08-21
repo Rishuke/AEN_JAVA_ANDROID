@@ -41,7 +41,8 @@ public class QcmListAdapter extends RecyclerView.Adapter<QcmListAdapter.ViewHold
                 // Créez un Intent pour démarrer la nouvelle activité
                 Intent intent = new Intent(context, QcmDetailActivity.class);
                 // Transfert des données
-                intent.putExtra("qcmId", qcm.getId()); // Supposons que Qcm ait une méthode getId()
+                intent.putExtra("qcmTitre", qcm.getTitre());
+                intent.putExtra("qcmid", qcm.getId());// Supposons que Qcm ait une méthode getId()
                 context.startActivity(intent);
             }
         });

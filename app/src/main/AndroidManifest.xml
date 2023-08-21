@@ -31,6 +31,8 @@
         <activity android:name=".CardActivity" />
         <activity android:name=".QcmListActivity" />
         <activity android:name=".QcmDetailActivity" />
+        <activity android:name=".ScoreActivity" />
+
 
 
     </application>
