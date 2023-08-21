@@ -1,5 +1,7 @@
 package com.example.aenrishi;
 
+import android.util.Log;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -121,7 +123,8 @@ public class Questions {
     }
 
     public boolean isUserAnswerCorrect() {
-        return userAnswer.equals(reponse);
+        Log.d("ANSWER_CHECK", "User Answer: " + userAnswer + ", Correct Answer: " + this.reponse);
+        return userAnswer.equals(this.reponse);
     }
 
 }

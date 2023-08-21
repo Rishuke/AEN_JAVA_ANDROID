@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -61,6 +63,7 @@ public class QcmDetailActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                v.setEnabled(false);
                 submitAnswers();
             }
         });
@@ -71,14 +74,22 @@ public class QcmDetailActivity extends AppCompatActivity {
         for (int i = 0; i < questionList.size(); i++) {
             Questions currentQuestion = questionList.get(i);
             if (this.isUserAnswerCorrect(currentQuestion)) {
+                Log.d("SCORE_CALC", "Question " + (i + 1) + " is correct.");
                 correctAnswers++;
+            } else {
+                Log.d("SCORE_CALC", "Question " + (i + 1) + " is incorrect.");
             }
+
         }
 
         int score = (correctAnswers * 100) / questionList.size();
-        displayScore(score);  // Call this after calculating the score
+        int quizId = getIntent().getIntExtra("qcmid", -1);
+
+        saveResultToServer(score, quizId);
+        displayScore(score);
         Toast.makeText(QcmDetailActivity.this, "Votre score est de: " + score + "%", Toast.LENGTH_LONG).show();
     }
+
 
 
     private void displayScore(int score) {
@@ -87,9 +98,50 @@ public class QcmDetailActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void saveResultsToDatabase(int score) {
-        // Votre logique pour enregistrer les résultats dans la base de données.
+    private void saveResultToServer(int score, int quizId) {
+        Intent intent = getIntent();
+        String email = intent.getStringExtra("email");
+        String password = intent.getStringExtra("password");
+        Log.d("MyApp", "Email: " + email);
+        Log.d("MyApp", "Password: " + password);
+        Resultat resultat = new Resultat();
+        resultat.setMember_id(9);
+        resultat.setQuiz_id(quizId);
+        resultat.setScore_obtenu(score);
+        resultat.setA_obtenu_certificat(score >= 50); // Admettons que 50 est le score minimum pour obtenir un certificat.
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://rishi.wicookin.fr/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<ResponseBody> call = apiService.postResultat(resultat);
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.d("API_CALL", "Received response with code: " + response.code());
+                if (response.isSuccessful()) {
+                    Toast.makeText(QcmDetailActivity.this, "Résultat sauvegardé avec succès!", Toast.LENGTH_SHORT).show();
+                } else {
+                    try {
+                        Log.d("API_ERROR", "Response Error Body: " + response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Toast.makeText(QcmDetailActivity.this, "Échec de la sauvegarde du résultat", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.d("API_CALL", "Failed API call: " + t.getMessage());
+                Toast.makeText(QcmDetailActivity.this, "Erreur lors de la sauvegarde: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
 
 
     public boolean isUserAnswerCorrect(Questions question) {

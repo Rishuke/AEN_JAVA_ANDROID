@@ -2,6 +2,7 @@ package com.example.aenrishi;
 
 import java.util.List; // Ajout de cet import
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -15,8 +16,9 @@ public interface ApiService {
     @GET("chapitres")
     Call<ResponseWrapper> getQcms();
 
-
-
     @GET("questions/{quizid}")
     Call<QuestionsResponseWrapper> getQuestionsForQuiz(@Path("quizid") int quizId);
+
+    @POST("resultatsutilisateur")
+    Call<ResponseBody> postResultat(@Body Resultat resultat);
 }
