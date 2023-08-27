@@ -105,7 +105,7 @@ public class QcmDetailActivity extends AppCompatActivity {
         Log.d("MyApp", "Email: " + email);
         Log.d("MyApp", "Password: " + password);
         Resultat resultat = new Resultat();
-        resultat.setMember_id(9);
+        resultat.setMember_id(10);
         resultat.setQuiz_id(quizId);
         resultat.setScore_obtenu(score);
         resultat.setA_obtenu_certificat(score >= 50); // Admettons que 50 est le score minimum pour obtenir un certificat.
